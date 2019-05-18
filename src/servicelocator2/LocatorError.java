@@ -1,4 +1,4 @@
 package servicelocator2;
 
-public class LocatorError {
+public class LocatorError extends Exception {
 }
