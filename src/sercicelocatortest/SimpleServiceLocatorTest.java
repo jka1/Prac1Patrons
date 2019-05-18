@@ -1,37 +1,56 @@
 package sercicelocatortest;
 
-import factories.*;
-import org.junit.jupiter.api.BeforeAll;
+import factories.FactoryA1;
+import factories.FactoryB1;
+import factories.FactoryC1;
+import factories.FactoryD1;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import servicelocator.Factory;
 import servicelocator.LocatorError;
 import servicelocator.SimpleServiceLocator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class SimpleServiceLocatorTest {
+    FactoryA1 factoryA;
+    FactoryB1 factoryB;
+    FactoryC1 factoryC;
+    FactoryD1 factoryD;
+    SimpleServiceLocator locator;
 
-
-    @BeforeAll
+    @BeforeEach
     public void initializer() throws  LocatorError{
-        FactoryA1 factoryA = new FactoryA1();
-        FactoryB1 factoryB = new FactoryB1();
-        FactoryC1 factoryC = new FactoryC1();
-        FactoryD1 factoryD = new FactoryD1();
+        factoryA = new FactoryA1();
+        factoryB = new FactoryB1();
+        factoryC = new FactoryC1();
+        factoryD = new FactoryD1();
 
-        SimpleServiceLocator locator = new SimpleServiceLocator();
+        locator = new SimpleServiceLocator();
+
         locator.setService("A",factoryA);
         locator.setService("B",factoryB);
-        locator.setService("S",factoryC);
-        locator.setService("I",factoryD);
-    }
+        locator.setService("C",factoryC);
+        locator.setService("D",factoryD);
+
+        locator.setConstant("S","testing");
+        locator.setConstant("I",5);
+
+        }
 
 
     @Test
     void testsetService() throws LocatorError {
         //setService instal·la una factoria donant-li un nom (i llença l'excepció
         //LocatorError si ja hi ha alguna cosa enregistrada amb aquest nom)
+        factoryA = new FactoryA1();
 
-        locator.setService("string1", new FactoryA1());
-        locator.setService("string2",new FactoryA1());
-        assertEquals("string" , );
+        //assertEquals(5,locator.setService("I"););
+        //ssertEquals("testing",locator.setService("S"););
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setService("hola",factoryA);
+        });
 
     }
 
@@ -44,13 +63,29 @@ class SimpleServiceLocatorTest {
     }
 
     @Test
-    void testgetObject() {
+    void testgetObject() throws LocatorError{
         //getObject, si el nom ha estat associat a una constant, retorna l’Object associat i,
         //si ha estat associat a una factoria, retorna l'Object creat per aquesta factoria.
         //Llença l'excepció LocatorError si no hi ha cap cosa sota aquest nom.
         //Fixeu-vos en que, en cas d'estar associat a una factoria, cada vegada que es crida,
         //retorna un objecte diferent.
+        Factory factor = new FactoryA1();
 
+        assertEquals(5,locator.getObject("I"));
+        assertEquals("testing",locator.getObject("S"));
 
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.getObject("test");
+            locator.getObject("test1");
+            locator.getObject("test2");
+            locator.getObject("test3");
+        });
+
+        Assertions.assertDoesNotThrow(() -> {
+            locator.getObject("A");
+            locator.getObject("B");
+            locator.getObject("C");
+            locator.getObject("D");
+        });
     }
 }
