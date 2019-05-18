@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SimpleServiceLocator implements ServiceLocator {
-    private Map<String, Factory> factoryHashMap = new HashMap<String, Factory>();
-    private Map<String, Object> constantHashMap = new HashMap<String, Object>();
+    private Map<String, Factory> factoryHashMap = new HashMap<>();
+    private Map<String, Object> constantHashMap = new HashMap<>();
 
     @Override
     public void setService(String name, Factory factory) throws LocatorError {
