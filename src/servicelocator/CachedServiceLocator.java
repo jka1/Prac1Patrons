@@ -3,7 +3,7 @@ package servicelocator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CachedServiceLocator implements ServiceLocator{
+public class CachedServiceLocator implements ServiceLocator {
     private Map<String, Factory> factoryHashMap = new HashMap<>();
     private Map<String, Object> constantHashMap = new HashMap<>();
 
@@ -27,10 +27,10 @@ public class CachedServiceLocator implements ServiceLocator{
 
     @Override
     public Object getObject(String name) throws LocatorError {
-        if (constantHashMap.containsKey(name)){
+        if (constantHashMap.containsKey(name)) {
             return constantHashMap.get(name);
         } else if (factoryHashMap.containsKey(name)) {
-            Object object =  factoryHashMap.get(name);
+            Object object = factoryHashMap.get(name);
             factoryHashMap.remove(name);
             setConstant(name, object);
             return object;
