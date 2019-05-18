@@ -11,7 +11,7 @@ public class FactoryC1 implements Factory {
     @Override
     public Object create(ServiceLocator sl) throws LocatorError {
         try {
-            String s = (String) sl.getObject("S");
+            String s = (String) sl.getObject("C");
             return new ImplementationC1(s);
         } catch (ClassCastException ex) {
             throw new LocatorError(ex);

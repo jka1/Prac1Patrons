@@ -10,7 +10,7 @@ public class FactoryD1 implements Factory {
     @Override
     public Object create(ServiceLocator sl) throws LocatorError {
         try {
-            Integer i = (Integer) sl.getObject("I");
+            int i = (Integer) sl.getObject("D");
             return new ImplementationD1(i);
         } catch (ClassCastException ex) {
             throw new LocatorError(ex);
