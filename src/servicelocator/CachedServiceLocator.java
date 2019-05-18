@@ -10,7 +10,7 @@ public class CachedServiceLocator implements ServiceLocator {
     @Override
     public void setService(String name, Factory factory) throws LocatorError {
         if (factoryHashMap.containsKey(name) || constantHashMap.containsKey(name)) {
-            throw new LocatorError("Name allredy in use");
+            throw new LocatorError("Name allready in use");
         } else {
             factoryHashMap.put(name, factory);
         }
@@ -19,7 +19,7 @@ public class CachedServiceLocator implements ServiceLocator {
     @Override
     public void setConstant(String name, Object value) throws LocatorError {
         if (constantHashMap.containsKey(name) || factoryHashMap.containsKey(name)) {
-            throw new LocatorError("Name allredy in use");
+            throw new LocatorError("Name allready in use");
         } else {
             constantHashMap.put(name, value);
         }
