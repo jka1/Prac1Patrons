@@ -50,13 +50,13 @@ class SimpleServiceLocatorTest {
             locator.setService("A", factoryA);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("B", factoryA);
+            locator.setService("B", factoryB);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("C", factoryA);
+            locator.setService("C", factoryC);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("D", factoryA);
+            locator.setService("D", factoryD);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
             locator.setService("S", factoryA);
