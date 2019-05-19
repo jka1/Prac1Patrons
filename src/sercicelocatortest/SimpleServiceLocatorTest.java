@@ -66,6 +66,16 @@ class SimpleServiceLocatorTest {
         Assertions.assertThrows(LocatorError.class, () -> {
             locator.setService("I",factoryA);
         });
+
+        Assertions.assertDoesNotThrow(() -> {
+            locator.setService("X",factoryA);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            locator.setService("Y",factoryA);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            locator.setService("Z",factoryA);
+        });
     }
 
     @Test
@@ -73,7 +83,34 @@ class SimpleServiceLocatorTest {
         //setConstant instal·la un valor de tipus Object donant-li un nom (i llença
         //l'excepció LocatorError si ja hi ha alguna cosa enregistrada amb aquest nom)
 
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setConstant("A",1);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setConstant("B",2);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setConstant("C",3);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setConstant("D",4);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setConstant("S",5);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setConstant("I",6);
+        });
 
+        Assertions.assertDoesNotThrow(() -> {
+            locator.setConstant("X",1);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            locator.setConstant("Y",2);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            locator.setConstant("Z",3);
+        });
     }
 
     @Test
