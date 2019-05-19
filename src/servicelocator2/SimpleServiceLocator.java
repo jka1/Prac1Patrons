@@ -3,6 +3,7 @@ package servicelocator2;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class SimpleServiceLocator implements ServiceLocator {
     private Map<Class, Factory> factoryHashMap = new HashMap<>();
     private Map<Class, Object> constantHashMap = new HashMap<>();
@@ -18,7 +19,7 @@ public class SimpleServiceLocator implements ServiceLocator {
 
     @Override
     public <T> void setConstant(Class<T> klass, T value) throws LocatorError {
-        if (constantHashMap.containsKey(klass) || constantHashMap.containsKey(klass)) {
+        if (constantHashMap.containsKey(klass) || factoryHashMap.containsKey(klass)) {
             throw new LocatorError("Name allready in use");
         } else {
             constantHashMap.put(klass, value);

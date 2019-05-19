@@ -3,6 +3,7 @@ package servicelocator2;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class CachedServiceLocator implements ServiceLocator {
     private Map<Class, Factory> factoryHashMap = new HashMap<>();
     private Map<Class, Object> constantHashMap = new HashMap<>();
