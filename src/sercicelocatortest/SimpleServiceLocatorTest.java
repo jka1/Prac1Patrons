@@ -49,9 +49,23 @@ class SimpleServiceLocatorTest {
         //assertEquals(5,locator.setService("I"););
         //ssertEquals("testing",locator.setService("S"););
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("hola",factoryA);
+            locator.setService("A",factoryA);
         });
-
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setService("B",factoryA);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setService("C",factoryA);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setService("D",factoryA);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setService("S",factoryA);
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setService("I",factoryA);
+        });
     }
 
     @Test
