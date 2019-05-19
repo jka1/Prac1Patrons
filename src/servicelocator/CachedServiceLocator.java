@@ -30,8 +30,9 @@ public class CachedServiceLocator implements ServiceLocator {
         if (constantHashMap.containsKey(name)) {
             return constantHashMap.get(name);
         } else if (factoryHashMap.containsKey(name)) {
-            Object object = factoryHashMap.get(name);
+            Factory factory = factoryHashMap.get(name);
             factoryHashMap.remove(name);
+            Object object = factory.create(this);
             setConstant(name, object);
             return object;
         } else {

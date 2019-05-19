@@ -1,4 +1,4 @@
-package sercicelocatortest;
+package servicelocatortest;
 
 import factories.FactoryA1;
 import factories.FactoryB1;
