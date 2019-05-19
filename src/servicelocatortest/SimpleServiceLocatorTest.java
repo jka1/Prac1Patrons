@@ -37,7 +37,6 @@ class SimpleServiceLocatorTest {
 
     }
 
-
     @Test
     void testsetService() throws LocatorError {
         //setService instal·la una factoria donant-li un nom (i llença l'excepció
