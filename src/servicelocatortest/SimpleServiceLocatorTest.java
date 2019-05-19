@@ -7,9 +7,7 @@ import factories.FactoryD1;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import servicelocator.Factory;
-import servicelocator.LocatorError;
-import servicelocator.SimpleServiceLocator;
+import servicelocator.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,10 +16,10 @@ class SimpleServiceLocatorTest {
     FactoryB1 factoryB;
     FactoryC1 factoryC;
     FactoryD1 factoryD;
-    SimpleServiceLocator locator;
+    ServiceLocator locator;
 
     @BeforeEach
-    public void initializer() throws  LocatorError{
+    public void initializer() throws LocatorError {
         factoryA = new FactoryA1();
         factoryB = new FactoryB1();
         factoryC = new FactoryC1();
@@ -29,15 +27,15 @@ class SimpleServiceLocatorTest {
 
         locator = new SimpleServiceLocator();
 
-        locator.setService("A",factoryA);
-        locator.setService("B",factoryB);
-        locator.setService("C",factoryC);
-        locator.setService("D",factoryD);
+        locator.setService("A", factoryA);
+        locator.setService("B", factoryB);
+        locator.setService("C", factoryC);
+        locator.setService("D", factoryD);
 
-        locator.setConstant("S","testing");
-        locator.setConstant("I",5);
+        locator.setConstant("S", "testing");
+        locator.setConstant("I", 5);
 
-        }
+    }
 
 
     @Test
@@ -49,37 +47,37 @@ class SimpleServiceLocatorTest {
         //assertEquals(5,locator.setService("I"););
         //ssertEquals("testing",locator.setService("S"););
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("A",factoryA);
+            locator.setService("A", factoryA);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("B",factoryA);
+            locator.setService("B", factoryA);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("C",factoryA);
+            locator.setService("C", factoryA);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("D",factoryA);
+            locator.setService("D", factoryA);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("S",factoryA);
+            locator.setService("S", factoryA);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setService("I",factoryA);
+            locator.setService("I", factoryA);
         });
 
         Assertions.assertDoesNotThrow(() -> {
-            locator.setService("X",factoryA);
+            locator.setService("X", factoryA);
         });
         Assertions.assertDoesNotThrow(() -> {
-            locator.setService("Y",factoryA);
+            locator.setService("Y", factoryA);
         });
         Assertions.assertDoesNotThrow(() -> {
-            locator.setService("Z",factoryA);
+            locator.setService("Z", factoryA);
         });
     }
 
     @Test
-    void testsetConstant() throws LocatorError{
+    void testsetConstant() throws LocatorError {
         //setConstant instal·la un valor de tipus Object donant-li un nom (i llença
         //l'excepció LocatorError si ja hi ha alguna cosa enregistrada amb aquest nom)
         Assertions.assertThrows(LocatorError.class, () -> {
@@ -87,37 +85,37 @@ class SimpleServiceLocatorTest {
         });
 
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setConstant("A",1);
+            locator.setConstant("A", 1);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setConstant("B",2);
+            locator.setConstant("B", 2);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setConstant("C",3);
+            locator.setConstant("C", 3);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setConstant("D",4);
+            locator.setConstant("D", 4);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setConstant("S",5);
+            locator.setConstant("S", 5);
         });
         Assertions.assertThrows(LocatorError.class, () -> {
-            locator.setConstant("I",6);
+            locator.setConstant("I", 6);
         });
 
         Assertions.assertDoesNotThrow(() -> {
-            locator.setConstant("X",1);
+            locator.setConstant("X", 1);
         });
         Assertions.assertDoesNotThrow(() -> {
-            locator.setConstant("Y",2);
+            locator.setConstant("Y", 2);
         });
         Assertions.assertDoesNotThrow(() -> {
-            locator.setConstant("Z",3);
+            locator.setConstant("Z", 3);
         });
     }
 
     @Test
-    void testgetObject() throws LocatorError{
+    void testgetObject() throws LocatorError {
         //getObject, si el nom ha estat associat a una constant, retorna l’Object associat i,
         //si ha estat associat a una factoria, retorna l'Object creat per aquesta factoria.
         //Llença l'excepció LocatorError si no hi ha cap cosa sota aquest nom.
@@ -125,23 +123,11 @@ class SimpleServiceLocatorTest {
         //retorna un objecte diferent.
         Factory factor = new FactoryA1();
 
-        assertEquals(5,locator.getObject("I"));
-        assertEquals("testing",locator.getObject("S"));
+        assertEquals(5, locator.getObject("I"));
+        assertEquals("testing", locator.getObject("S"));
 
         Assertions.assertThrows(LocatorError.class, () -> {
             locator.getObject("test");
-        });
-        Assertions.assertThrows(LocatorError.class, () -> {
-            locator.getObject("test1");
-        });
-        Assertions.assertThrows(LocatorError.class, () -> {
-            locator.getObject("test2");
-        });
-        Assertions.assertThrows(LocatorError.class, () -> {
-            locator.getObject("test3");
-        });
-        Assertions.assertThrows(LocatorError.class, () -> {
-            locator.getObject("test4");
         });
 
         Assertions.assertDoesNotThrow(() -> {
