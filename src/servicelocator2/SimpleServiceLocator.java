@@ -18,7 +18,7 @@ public class SimpleServiceLocator implements ServiceLocator {
 
     @Override
     public <T> void setConstant(Class<T> klass, T value) throws LocatorError {
-        if (constantHashMap.containsKey(klass) || constantHashMap.containsKey(klass)) {
+        if (constantHashMap.containsKey(klass) || factoryHashMap.containsKey(klass)) {
             throw new LocatorError("Name allready in use");
         } else {
             constantHashMap.put(klass, value);
@@ -37,4 +37,4 @@ public class SimpleServiceLocator implements ServiceLocator {
         }
     }
 }
-}
+
