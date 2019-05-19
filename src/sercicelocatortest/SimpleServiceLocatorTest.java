@@ -82,6 +82,9 @@ class SimpleServiceLocatorTest {
     void testsetConstant() throws LocatorError{
         //setConstant instal·la un valor de tipus Object donant-li un nom (i llença
         //l'excepció LocatorError si ja hi ha alguna cosa enregistrada amb aquest nom)
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.setConstant("I", 5);
+        });
 
         Assertions.assertThrows(LocatorError.class, () -> {
             locator.setConstant("A",1);
