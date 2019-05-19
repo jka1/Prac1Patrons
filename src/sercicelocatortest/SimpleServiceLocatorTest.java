@@ -90,15 +90,30 @@ class SimpleServiceLocatorTest {
 
         Assertions.assertThrows(LocatorError.class, () -> {
             locator.getObject("test");
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
             locator.getObject("test1");
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
             locator.getObject("test2");
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
             locator.getObject("test3");
+        });
+        Assertions.assertThrows(LocatorError.class, () -> {
+            locator.getObject("test4");
         });
 
         Assertions.assertDoesNotThrow(() -> {
             locator.getObject("A");
+        });
+        Assertions.assertDoesNotThrow(() -> {
             locator.getObject("B");
+        });
+        Assertions.assertDoesNotThrow(() -> {
             locator.getObject("C");
+        });
+        Assertions.assertDoesNotThrow(() -> {
             locator.getObject("D");
         });
     }
